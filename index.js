@@ -20,22 +20,18 @@ app
   .patch((req, res) => {
     const id = Number(req.params.id);
     const body = req.body;
-    const user = users.find((user) => user.id === id);
     const userIndex = users.findIndex((user) => user.id === id);
     users[userIndex] = { ...users[userIndex], ...body };
-    console.log(body);
-    console.log(users[user]);
     fs.writeFile("./MOCK_DATA.json", JSON.stringify(users), (err, data) => {
-      return res.json({ status: "success", user });
+      return res.json({ status: "success" });
     });
   })
   .delete((req, res) => {
     const id = Number(req.params.id);
-    const user = users.find((user) => user.id === id);
     const userIndex = users.findIndex((user) => user.id === id);
     users[userIndex] = { ...(users[userIndex] - 1) };
     fs.writeFile("./MOCK_DATA.json", JSON.stringify(users), (err, data) => {
-      return res.json({ status: "success", user });
+      return res.json({ status: "success" });
     });
   });
 
